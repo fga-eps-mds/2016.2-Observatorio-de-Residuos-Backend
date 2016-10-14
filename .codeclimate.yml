@@ -7,7 +7,6 @@ engines:
     config:
       languages:
       - ruby
-      - javascript
   eslint:
     enabled: true
   fixme:
@@ -16,13 +15,8 @@ engines:
     enabled: true
 ratings:
   paths:
-  - "observatorio-app/www/js/controllers.js"
-  - "observatorio-app/www/js/app.js"
-  - "observatorio-app/www/js/Login/*.js"
-  - "observatorio-app/www/templates/*.html"
-  - "observatorio-server/app/controllers/*.rb"
-  - "observatorio-server/app/models/*.rb"
+  - "app/controllers/*.rb"
+  - "app/models/*.rb"
 exclude_paths: 
-  - "observatorio-app/www/lib"
-  - "observatorio-server/coverage"
-  - "observatorio-app/coverage"
+  - "coverage"
+  - "spec"
