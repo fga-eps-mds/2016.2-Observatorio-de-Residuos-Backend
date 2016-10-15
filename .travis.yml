@@ -6,9 +6,9 @@ rvm:
 before_script:
  - gem install rspec rspec-rails simplecov
  - bundle install
- - rake db:migrate RAILS_ENV=test
 
 script:
+  - bundle exec rake db:migrate RAILS_ENV=test
   - bundle exec rspec spec
 
 notifications:
