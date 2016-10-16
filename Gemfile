@@ -41,6 +41,7 @@ gem 'rspec-rails'
 group :development, :test do
 	gem 'simplecov'
 	gem 'cucumber-rails', :require => false
+	gem 'codeclimate-test-reporter'
 end
 
 group :development, :test do
