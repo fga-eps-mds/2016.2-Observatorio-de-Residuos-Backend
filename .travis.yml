@@ -4,12 +4,15 @@ rvm:
   - "2.3.0"
 
 before_script:
- - gem install rspec rspec-rails simplecov
+ - gem install rspec rspec-rails simplecov codeclimate-test-reporter 
  - bundle install
 
 script:
   - bundle exec rake db:migrate RAILS_ENV=test
   - bundle exec rspec spec
+
+after_success:
+  - CODECLIMATE_REPO_TOKEN=31c7a0fe383cb7ccb088534e21bb44fe5e84bbbf9b296fc4f0518da24cdcc26b bundle exec rake 
 
 notifications:
   email:
