@@ -2,12 +2,13 @@ class CreatePevs < ActiveRecord::Migration
   def change
     create_table :pevs do |t|
       t.string :name
-      t.string :paper
-      t.string :plastic
-      t.string :metal
-      t.string :glass
+      t.boolean :paper
+      t.boolean :plastic
+      t.boolean :metal
+      t.boolean :glass
       t.string :comment
-      t.string :location 
+      t.string :latitude
+      t.string :longitude
       t.timestamps null: false
     end
   end
