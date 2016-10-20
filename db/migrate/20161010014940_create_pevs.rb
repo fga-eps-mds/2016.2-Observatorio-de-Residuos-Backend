@@ -6,7 +6,7 @@ class CreatePevs < ActiveRecord::Migration
       t.boolean :plastic
       t.boolean :metal
       t.boolean :glass
-      t.string :comment
+      t.string :description
       t.string :latitude
       t.string :longitude
       t.timestamps null: false

@@ -1,5 +1,5 @@
 class Pev < ActiveRecord::Base
-  validates :comment, length: {maximum:140}
+  validates :description, length: {maximum:140}
   validates :name, presence:true
   validate :validate_type
   def validate_type
