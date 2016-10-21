@@ -5,6 +5,11 @@ class PevsController < ApplicationController
     render json: Pev.all
   end
 
+  def getOnePev
+    pev = Pev.first
+    render json: pev;
+  end
+
   def create
     pev = Pev.new(pev_params)
     if pev.save
