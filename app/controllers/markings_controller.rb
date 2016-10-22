@@ -21,6 +21,6 @@ class MarkingsController < ApplicationController
 
   private
   def marking_params
-    params.require(:marking).permit(:name, :local, :marking_type, :description)
+    params.require(:marking).permit(:name, :fire, :water, :earth, :air, :description, :latitude, :longitude)
   end
 end
