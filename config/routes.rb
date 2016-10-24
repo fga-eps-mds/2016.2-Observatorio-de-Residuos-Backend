@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   post 'markings/create' => 'markings#create'
   get 'markings' => 'markings#index'
   post 'pevs/create' => 'pevs#create'
+  post 'pevs/edit' => 'pevs#edit'
   get 'pevs/getonepev' => 'pevs#getOnePev'
   get 'pevs' => 'pevs#index'
   # The priority is based upon order of creation: first created -> highest priority.

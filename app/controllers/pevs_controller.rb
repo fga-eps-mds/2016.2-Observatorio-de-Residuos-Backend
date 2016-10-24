@@ -10,6 +10,12 @@ class PevsController < ApplicationController
     render json: pev;
   end
 
+  def edit
+    pev = Pev.find_by_latitude_and_longitude(params[:pev][:latitude], params[:pev][:longitude])
+    pev.update(pev_params)
+    render json: pev;
+  end
+
   def create
     pev = Pev.new(pev_params)
     if pev.save
