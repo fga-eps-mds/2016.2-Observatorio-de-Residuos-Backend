@@ -5,6 +5,17 @@ class PevsController < ApplicationController
     render json: Pev.all
   end
 
+  def getOnePev
+    pev = Pev.first
+    render json: pev;
+  end
+
+  def edit
+    pev = Pev.find_by_latitude_and_longitude(params[:pev][:latitude], params[:pev][:longitude])
+    pev.update(pev_params)
+    render json: pev;
+  end
+
   def create
     pev = Pev.new(pev_params)
     if pev.save
@@ -17,6 +28,6 @@ class PevsController < ApplicationController
 
   private
   def pev_params
-    params.require(:pev).permit(:name, :plastic, :paper, :metal, :glass, :latitude, :longitude, :comment)
+    params.require(:pev).permit(:name, :plastic, :paper, :metal, :glass, :latitude, :longitude, :description)
   end
 end
