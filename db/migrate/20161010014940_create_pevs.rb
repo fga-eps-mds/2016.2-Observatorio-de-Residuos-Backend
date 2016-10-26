@@ -1,6 +1,7 @@
 class CreatePevs < ActiveRecord::Migration
   def change
     create_table :pevs do |t|
+      t.string :author_email
       t.string :name
       t.boolean :paper
       t.boolean :plastic
