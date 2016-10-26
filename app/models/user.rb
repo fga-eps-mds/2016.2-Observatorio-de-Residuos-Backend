@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  self.table_name = "usuarios"
 
    VALID_NAME_FORMAT= /[a-z|A-Z áéíóúÁÉÍÓÚçÇâôãõÂÔÃÕ]/
    validates :first_name, presence: true, length: {maximum: 30}, format: { with: VALID_NAME_FORMAT}
