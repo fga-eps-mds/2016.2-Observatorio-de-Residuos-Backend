@@ -1,4 +1,5 @@
 class Pev < ActiveRecord::Base
+  self.table_name = "pevs"
   validates :description, length: {maximum:140}
   validates :author_email, presence:true
   validates :name, presence:true
@@ -8,4 +9,4 @@ class Pev < ActiveRecord::Base
       errors.add(:base,"Selecione ao menos um material recolhido pela PEV")
     end
   end
-end 
+end
