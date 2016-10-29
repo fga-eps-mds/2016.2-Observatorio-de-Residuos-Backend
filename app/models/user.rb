@@ -9,5 +9,4 @@ class User < ActiveRecord::Base
    before_save { self.email = email.downcase }
 
    #validates :profile_type, presence: true
-
 end

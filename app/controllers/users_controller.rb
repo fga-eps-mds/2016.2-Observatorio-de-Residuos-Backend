@@ -11,7 +11,12 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.new(user_params)
+    nome_completo = (params[:first_name])#.to_s +" " + (params[:last_name]).to_s
+    usuario = params[:email]
+    senha = params[:password_digest]
+    codigo_verificacao = "Lorem ipsum dolor"
+
+    user = User.new(nome_completo: nome_completo, email: usuario,usuario: usuario, senha: senha, codigo_verificacao: codigo_verificacao)
     if user.save
         render json: user
     else
@@ -21,6 +26,6 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :city, :gender, :profile_type, :password_digest)
+    params.require(:user).permit(:first_name, :last_nam, :email, :city, :gender, :profile_type, :password_digest)
   end
 end

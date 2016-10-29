@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   post 'pevs/edit' => 'pevs#edit'
   get 'pevs/getonepev' => 'pevs#getOnePev'
   get 'pevs' => 'pevs#index'
-  get 'perfis' => 'perfis#index'
+  get 'profiles' => 'profiles#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
