@@ -10,6 +10,8 @@ class UsersController < ApplicationController
       end
   end
 
+  #arrumar o validates do email, enviar dois erros para o ionic
+  #quando o validates da erro: "email ja cadastrado".
   def create
     primeiro_nome = params[:first_name]
     ultimo_nome = params[:last_name]

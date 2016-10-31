@@ -17,7 +17,19 @@ class PevsController < ApplicationController
   end
 
   def create
-    pev = Pev.new(pev_params)
+
+    titulo_pev = params[:name]
+    puts 'shaushuahsuahsua'
+    puts(titulo_pev)
+    descricao_pev = params[:description]
+    id_tipo_pev = 1
+    latitude = params[:latitude]
+    longitude = params[:longitude]
+    estado = 'CU'
+    cidade = 'to do pegarCidade'
+    id_usuario = 1
+
+    pev = Pev.new(titulo_pev: titulo_pev, descricao_pev: descricao_pev, id_tipo_pev: id_tipo_pev, latitude: latitude, longitude: longitude, estado: estado, cidade: cidade, id_usuario: id_usuario)
     if pev.save
         render json: pev
     else
