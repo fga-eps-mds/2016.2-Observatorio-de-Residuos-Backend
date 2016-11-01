@@ -17,10 +17,7 @@ class PevsController < ApplicationController
   end
 
   def create
-
     titulo_pev = params[:name]
-    puts 'shaushuahsuahsua'
-    puts(titulo_pev)
     descricao_pev = params[:description]
     id_tipo_pev = 1
     latitude = params[:latitude]

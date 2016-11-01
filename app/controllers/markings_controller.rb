@@ -3,14 +3,23 @@ class MarkingsController < ApplicationController
 
   def index
     render json: Marking.all
-  end 
+  end
 
   def new
     marking = Marking.new
   end
 
   def create
-    marking = Marking.new(marking_params)
+    titulo_incidente = params[:name]
+    descricao_incidente = params[:description]
+    id_tipo_incidente = 12
+    imagem_incidente = 'imagem'
+    latitude = params[:latitude]
+    longitude = params[:longitude]
+    estado = 'GO'
+    cidade = 'Luziania'
+    id_usuario = 1
+    marking = Marking.new(titulo_incidente: titulo_incidente, descricao_incidente: descricao_incidente, id_tipo_incidente: id_tipo_incidente, imagem_incidente: imagem_incidente, latitude: latitude, longitude: longitude, estado: estado, cidade: cidade, id_usuario: id_usuario)
     if marking.save
         render json: marking
     else

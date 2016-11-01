@@ -492,6 +492,10 @@ CREATE TABLE IF NOT EXISTS `tipos_incidentes` (
   PRIMARY KEY (`id_tipo_incidente`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
+INSERT INTO tipos_incidentes(tipo_incidente, tipo_incidente_usuario)
+VALUES ('incidente', 'amoedo');
+
+
 --
 -- Estrutura da tabela `tipos_pevs`
 --
