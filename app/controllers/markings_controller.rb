@@ -18,7 +18,7 @@ class MarkingsController < ApplicationController
     longitude = params[:longitude]
     estado = 'GO'
     cidade = 'Luziania'
-    id_usuario = 1
+    id_usuario = User.find_by_email(params[:author_email]).id_usuario;
     marking = Marking.new(titulo_incidente: titulo_incidente, descricao_incidente: descricao_incidente, id_tipo_incidente: id_tipo_incidente, imagem_incidente: imagem_incidente, latitude: latitude, longitude: longitude, estado: estado, cidade: cidade, id_usuario: id_usuario)
     if marking.save
         render json: marking

@@ -29,11 +29,12 @@ class PevsController < ApplicationController
     metal = params[:metal]
     plastic = params[:plastic]
     glass = params[:glass]
+    id_usuario = User.find_by_email(params[:author_email]).id_usuario;
 
-    pev = Pev.new(titulo_pev: titulo_pev, descricao_pev: descricao_pev, 
-                  id_tipo_pev: id_tipo_pev, latitude: latitude, 
-                  longitude: longitude, estado: estado, cidade: cidade, 
-                  id_usuario: id_usuario,paper: paper, metal: metal, 
+    pev = Pev.new(titulo_pev: titulo_pev, descricao_pev: descricao_pev,
+                  id_tipo_pev: id_tipo_pev, latitude: latitude,
+                  longitude: longitude, estado: estado, cidade: cidade,
+                  id_usuario: id_usuario,paper: paper, metal: metal,
                   plastic: plastic, glass: glass)
     if pev.save
         render json: pev
