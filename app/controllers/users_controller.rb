@@ -10,8 +10,17 @@ class UsersController < ApplicationController
       end
   end
 
+  #arrumar o validates do email, enviar dois erros para o ionic
+  #quando o validates da erro: "email ja cadastrado".
   def create
-    user = User.new(user_params)
+    primeiro_nome = params[:first_name]
+    ultimo_nome = params[:last_name]
+    nome_completo = primeiro_nome +" "+ultimo_nome;
+    usuario = params[:email]
+    senha = params[:password_digest]
+    codigo_verificacao = SecureRandom.urlsafe_base64(nil, false);
+
+    user = User.new(nome_completo: nome_completo, email: usuario,usuario: usuario, senha: senha, codigo_verificacao: codigo_verificacao)
     if user.save
         render json: user
     else
@@ -21,6 +30,6 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :city, :gender, :profile_type, :password_digest)
+    params.require(:user).permit(:first_name, :last_nam, :email, :city, :gender, :profile_type, :password_digest)
   end
 end

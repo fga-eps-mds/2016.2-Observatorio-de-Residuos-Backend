@@ -1,11 +1,7 @@
 class Pev < ActiveRecord::Base
-  validates :description, length: {maximum:140}
-  validates :author_email, presence:true
-  validates :name, presence:true
-  validate :validate_type
-  def validate_type
-    if(!self.paper && !self.plastic && !self.metal && !self.glass)
-      errors.add(:base,"Selecione ao menos um material recolhido pela PEV")
-    end
-  end
-end 
+  self.table_name = "pevs"
+  validates :descricao_pev, length: {maximum:140}
+  validates :titulo_pev, presence:true
+  #existe um Id_user ao invés de email.
+  #validates :author_email, presence:true
+end

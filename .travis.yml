@@ -3,11 +3,17 @@ language: ruby
 rvm:
   - "2.3.0"
 
+services:
+  - mysql
+
 before_script:
- - gem install rspec rspec-rails simplecov codeclimate-test-reporter 
+ - sudo apt-get install libmysqlclient-dev  
+ - gem install rspec rspec-rails simplecov codeclimate-test-reporter
  - bundle install
 
 script:
+  - mysql -uroot -e 'CREATE DATABASE IF NOT EXISTS `observatorio-producaoTest` CHARACTER SET utf8 COLLATE utf8_general_ci'
+  - mysql observatorio-producaoTest < db/banco_observatorio.sql -uroot
   - bundle exec rake db:migrate RAILS_ENV=test
   - bundle exec rspec spec
 
