@@ -25,8 +25,16 @@ class PevsController < ApplicationController
     estado = 'CU'
     cidade = 'to do pegarCidade'
     id_usuario = 1
+    paper = params[:paper]
+    metal = params[:metal]
+    plastic = params[:plastic]
+    glass = params[:glass]
 
-    pev = Pev.new(titulo_pev: titulo_pev, descricao_pev: descricao_pev, id_tipo_pev: id_tipo_pev, latitude: latitude, longitude: longitude, estado: estado, cidade: cidade, id_usuario: id_usuario)
+    pev = Pev.new(titulo_pev: titulo_pev, descricao_pev: descricao_pev, 
+                  id_tipo_pev: id_tipo_pev, latitude: latitude, 
+                  longitude: longitude, estado: estado, cidade: cidade, 
+                  id_usuario: id_usuario,paper: paper, metal: metal, 
+                  plastic: plastic, glass: glass)
     if pev.save
         render json: pev
     else
