@@ -2,7 +2,12 @@ class MarkingsController < ApplicationController
   before_action :set_marking, only: [:show, :edit, :update, :destroy]
 
   def index
-    render json: Marking.all
+    markings = Marking.all
+    markings.each do |m|
+      m.author_name = User.find(m.id_usuario).nome_completo
+      m.author_email = User.find(m.id_usuario).email
+    end
+    render json: markings, methods:[:author_name, :author_email]
   end
 
   def new
