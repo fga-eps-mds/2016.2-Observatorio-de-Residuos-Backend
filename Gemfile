@@ -19,7 +19,7 @@ gem 'rack-cors', :require => 'rack/cors'
 # My gems
 #gem 'active_model_serializers'
 gem 'bcrypt'
-gem 'mysql'
+gem 'mysql2'
 gem 'validates_timeliness', '~> 4.0'
 
 # Use jquery as the JavaScript library
