@@ -33,6 +33,12 @@ class MarkingsController < ApplicationController
     end
   end
 
+  def edit
+    #marking = Marking.find_by_latitude_and_longitude(params[:marking][:latitude], params[:marking][:longitude])
+    marking.update(marking_params)
+    render json: marking;
+  end
+
   private
   def marking_params
     params.require(:marking).permit(:name, :fire, :water, :earth, :air, :description, :latitude, :longitude)
