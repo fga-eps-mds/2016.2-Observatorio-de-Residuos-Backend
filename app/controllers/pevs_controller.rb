@@ -22,7 +22,7 @@ class PevsController < ApplicationController
     id_tipo_pev = 1
     latitude = params[:latitude]
     longitude = params[:longitude]
-    estado = 'CU'
+    estado = 'XX'
     cidade = 'to do pegarCidade'
     id_usuario = 1
     paper = params[:paper]
