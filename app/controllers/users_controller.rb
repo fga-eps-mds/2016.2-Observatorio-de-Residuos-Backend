@@ -10,6 +10,11 @@ class UsersController < ApplicationController
       end
   end
 
+  def edit
+    user = Pev.find_by_email(params[:email]);
+    user.update(nome_completo: params[:name]);
+    render json: user;
+  end
   #arrumar o validates do email, enviar dois erros para o ionic
   #quando o validates da erro: "email ja cadastrado".
   def create
