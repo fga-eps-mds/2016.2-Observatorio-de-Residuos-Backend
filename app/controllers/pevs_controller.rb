@@ -15,7 +15,7 @@ class PevsController < ApplicationController
 
   def edit
     pev = Pev.find_by_latitude_and_longitude(params[:pev][:latitude], params[:pev][:longitude])
-    pev.update(pev_params)
+    pev.update(titulo_pev: params[:name], descricao_pev: params[:description]);
     render json: pev;
   end
 
@@ -25,7 +25,7 @@ class PevsController < ApplicationController
     id_tipo_pev = 1
     latitude = params[:latitude]
     longitude = params[:longitude]
-    estado = 'GO'
+    estado = 'XX'
     cidade = 'to do pegarCidade'
     paper = params[:paper]
     metal = params[:metal]
