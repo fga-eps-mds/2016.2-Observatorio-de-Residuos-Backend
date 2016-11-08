@@ -1,8 +1,11 @@
 class PevsController < ApplicationController
-#   before_action :set_user, only: [:show, :edit, :update, :destroy]
-
   def index
-    render json: Pev.all
+    pevs = Pev.all
+    pevs.each do |m|
+      m.author_name = User.find(m.id_usuario).nome_completo
+      m.author_email = User.find(m.id_usuario).email
+    end
+    render json: pevs, methods:[:author_name, :author_email]
   end
 
   def getOnePev
@@ -22,11 +25,19 @@ class PevsController < ApplicationController
     id_tipo_pev = 1
     latitude = params[:latitude]
     longitude = params[:longitude]
-    estado = 'CU'
+    estado = 'GO'
     cidade = 'to do pegarCidade'
-    id_usuario = 1
+    paper = params[:paper]
+    metal = params[:metal]
+    plastic = params[:plastic]
+    glass = params[:glass]
+    id_usuario = User.find_by_email(params[:author_email]).id_usuario;
 
-    pev = Pev.new(titulo_pev: titulo_pev, descricao_pev: descricao_pev, id_tipo_pev: id_tipo_pev, latitude: latitude, longitude: longitude, estado: estado, cidade: cidade, id_usuario: id_usuario)
+    pev = Pev.new(titulo_pev: titulo_pev, descricao_pev: descricao_pev,
+                  id_tipo_pev: id_tipo_pev, latitude: latitude,
+                  longitude: longitude, estado: estado, cidade: cidade,
+                  id_usuario: id_usuario,paper: paper, metal: metal,
+                  plastic: plastic, glass: glass)
     if pev.save
         render json: pev
     else
