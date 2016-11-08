@@ -1,6 +1,4 @@
 class MarkingsController < ApplicationController
-  before_action :set_marking, only: [:show, :edit, :update, :destroy]
-
   def index
     markings = Marking.all
     markings.each do |m|
@@ -34,8 +32,10 @@ class MarkingsController < ApplicationController
   end
 
   def edit
-    #marking = Marking.find_by_latitude_and_longitude(params[:marking][:latitude], params[:marking][:longitude])
-    marking.update(marking_params)
+    marking = Marking.find_by_latitude_and_longitude(params[:marking][:latitude], params[:marking][:longitude])
+    marking.titulo_incidente = params[:name]
+    marking.descricao_incidente = params[:description]
+    marking.save
     render json: marking;
   end
 
