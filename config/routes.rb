@@ -1,18 +1,20 @@
 Rails.application.routes.draw do
 
-  post 'sessions/login' => 'sessions#create'
-  post 'users/create' => 'users#create'
+  post 'sessions/login'     => 'sessions#create'
+  post 'users/create'       => 'users#create'
   post 'users/verify_email' => 'users#verify_email'
-  post 'users/edit'=> 'users#edit'
-  get  'profiles' => 'profiles#index'
-  post 'markings/create' => 'markings#create'
-  get  'markings' => 'markings#index'
-  post 'pevs/create' => 'pevs#create'
-  post 'pevs/edit' => 'pevs#edit'
-  get 'pevs/getonepev' => 'pevs#getOnePev'
-  get 'profiles' => 'profiles#index'
-  get 'pevs' => 'pevs#index'
-  post 'markings/edit' => 'markings#edit'
+  post 'users/edit'         => 'users#edit'
+  post 'markings/create'    => 'markings#create'
+  post 'pevs/create'        => 'pevs#create'
+  post 'pevs/edit'          => 'pevs#edit'
+  post 'markings/edit'      => 'markings#edit'
+
+  get  'profiles'       => 'profiles#index'
+  get  'markings'       => 'markings#index'
+  get  'pevs'           => 'pevs#index'
+  get  'pev_types'      => 'pev_types#index'
+  get  'marking_types'  => 'marking_types#index';
+  get  'pevs/getonepev' => 'pevs#getOnePev'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
