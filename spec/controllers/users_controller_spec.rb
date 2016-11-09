@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
 	before :all do
+		UserAccess.destroy_all
 		User.destroy_all
 		User.create! :codigo_verificacao=>"Lorem Ipsum", :usuario=>"aspdasd@hotmail.com",:nome_completo=>"test teste teste", :email=>"test@email.com", :senha=>"123456"
 	end
