@@ -3430,6 +3430,9 @@ CREATE TABLE IF NOT EXISTS `tipos_pevs` (
   PRIMARY KEY (`id_tipo_pev`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+
+INSERT INTO tipos_pevs(tipo_pev, tipo_pev_usuario, tipo_pev_publicado)
+ VALUES('coleta seletiva', 'AMOEDO', 1);
 -- --------------------------------------------------------
 
 --
