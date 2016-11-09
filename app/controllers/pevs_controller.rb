@@ -45,9 +45,4 @@ class PevsController < ApplicationController
         puts pev.errors.messages
     end
   end
-
-  private
-  def pev_params
-    params.require(:pev).permit(:author_email, :name, :plastic, :paper, :metal, :glass, :latitude, :longitude, :description)
-  end
 end

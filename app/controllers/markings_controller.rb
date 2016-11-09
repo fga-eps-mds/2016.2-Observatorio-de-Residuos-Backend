@@ -38,9 +38,4 @@ class MarkingsController < ApplicationController
     marking.save
     render json: marking;
   end
-
-  private
-  def marking_params
-    params.require(:marking).permit(:name, :fire, :water, :earth, :air, :description, :latitude, :longitude)
-  end
 end
