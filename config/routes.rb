@@ -13,6 +13,11 @@ Rails.application.routes.draw do
   get 'profiles' => 'profiles#index'
   get 'pevs' => 'pevs#index'
   post 'markings/edit' => 'markings#edit'
+
+  ##################################################
+  post 'pevs/increment' => 'pevs#increment'
+  post 'markings/increment' => 'markings#increment'
+  ##################################################
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
