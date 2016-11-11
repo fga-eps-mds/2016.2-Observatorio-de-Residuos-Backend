@@ -23,9 +23,10 @@ class UsersController < ApplicationController
     nome_completo = primeiro_nome +" "+ultimo_nome;
     usuario = params[:email]
     senha = params[:password_digest]
+    perfil = params[:profile]
     codigo_verificacao = SecureRandom.urlsafe_base64(nil, false);
 
-    user = User.new(nome_completo: nome_completo, email: usuario,usuario: usuario, senha: senha, codigo_verificacao: codigo_verificacao)
+    user = User.new(nome_completo: nome_completo, perfil: perfil, email: usuario,usuario: usuario, senha: senha, codigo_verificacao: codigo_verificacao)
     if user.save
         render json: user
     else
