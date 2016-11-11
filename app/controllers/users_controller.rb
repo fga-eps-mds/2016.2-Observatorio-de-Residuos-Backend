@@ -11,8 +11,8 @@ class UsersController < ApplicationController
   end
 
   def edit
-    user = Pev.find_by_email(params[:email]);
-    user.update(nome_completo: params[:name]);
+    user = User.find_by_email(params[:email]);
+    user.update(nome_completo: params[:name], perfil: params[:profile]);
     render json: user;
   end
   #arrumar o validates do email, enviar dois erros para o ionic
