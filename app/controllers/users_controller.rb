@@ -32,9 +32,4 @@ class UsersController < ApplicationController
         render json: { error: 'Incorrect credentials' }, status: 401
     end
   end
-
-  private
-  def user_params
-    params.require(:user).permit(:first_name, :last_nam, :email, :city, :gender, :profile_type, :password_digest)
-  end
 end

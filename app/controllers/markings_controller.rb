@@ -3,8 +3,9 @@ class MarkingsController < ApplicationController
   def index
     markings = Marking.all
     markings.each do |m|
-      m.author_name = User.find(m.id_usuario).nome_completo
-      m.author_email = User.find(m.id_usuario).email
+      user = User.find_by_id_usuario(m.id_usuario);
+      m.author_name =  (user!=nil) ? user.nome_completo : "anonimo"
+      m.author_email = (user!=nil) ? user.email : "anonimo"
     end
     render json: markings, methods:[:author_name, :author_email]
   end
@@ -61,12 +62,5 @@ class MarkingsController < ApplicationController
     marking.descricao_incidente = params[:description]
     marking.save
     render json: marking;
-  end
-
-  private
-  def marking_params
-####################################################################
-    params.require(:marking).permit(:name, :fire, :water, :earth, :air, :description, :latitude, :longitude, :likes, :dislikes)
-####################################################################
   end
 end
