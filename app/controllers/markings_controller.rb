@@ -36,6 +36,7 @@ class MarkingsController < ApplicationController
     marking = Marking.find_by_latitude_and_longitude(params[:marking][:latitude], params[:marking][:longitude])
     marking.titulo_incidente = params[:name]
     marking.descricao_incidente = params[:description]
+    marking.id_tipo_incidente = params[:id_marking_type]
     marking.save
     render json: marking;
   end
