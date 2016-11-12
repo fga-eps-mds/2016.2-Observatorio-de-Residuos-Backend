@@ -8,11 +8,6 @@ class MarkingsController < ApplicationController
     end
     render json: markings, methods:[:author_name, :author_email]
   end
-
-  def new
-    marking = Marking.new
-  end
-
   def create
     titulo_incidente = params[:name]
     descricao_incidente = params[:description]
