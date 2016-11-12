@@ -20,16 +20,13 @@ class PevsController < ApplicationController
     render json: pev;
   end
 
-###################################################################
   def increment
-    #pev = Pev.find_by_id_pev(params[:])
     pev = Pev.find_by_latitude_and_longitude(params[:pev][:latitude], params[:pev][:longitude])
     pev.total_confirmacoes_funcionando = params[:likes]
     pev.total_confirmacoes_fechou = params[:dislikes]
     pev.save
     render json: pev;
   end
-####################################################################
 
   def create
     titulo_pev = params[:name]
@@ -43,10 +40,8 @@ class PevsController < ApplicationController
     metal = params[:metal]
     plastic = params[:plastic]
     glass = params[:glass]
-###################################################################
     total_confirmacoes_funcionando = params[:likes]
     total_confirmacoes_fechou = params[:dislikes]
-###################################################################
 
     id_usuario = User.find_by_email(params[:author_email]).id_usuario;
     pev = Pev.new(titulo_pev: titulo_pev, descricao_pev: descricao_pev,
@@ -54,10 +49,8 @@ class PevsController < ApplicationController
                   longitude: longitude, estado: estado, cidade: cidade,
                   id_usuario: id_usuario,paper: paper, metal: metal,
                   plastic: plastic, glass: glass,
-###################################################################
                   total_confirmacoes_funcionando: total_confirmacoes_funcionando,
                   total_confirmacoes_fechou: total_confirmacoes_fechou)
-###################################################################
     if pev.save
         render json: pev
     else
