@@ -69,4 +69,5 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  get  'marking_types/:id' => 'marking_types#find'
 end
