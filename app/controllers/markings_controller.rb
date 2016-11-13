@@ -15,9 +15,10 @@ class MarkingsController < ApplicationController
   end
 
   def increment
-    marking = Marking.find_by_latitude_and_longitude(params[:marking][:latitude], params[:marking][:longitude])
+    marking = Marking.find_by_latitude_and_longitude(params[:latitude], params[:longitude])
     marking.total_confirmacoes_existencia = params[:likes]
     marking.total_confirmacoes_resolvido = params[:dislikes]
+    puts(marking.total_confirmacoes_existencia)
     marking.save
     render json: marking;
   end
@@ -40,7 +41,8 @@ class MarkingsController < ApplicationController
                           latitude: latitude, longitude: longitude, estado: estado, 
                           cidade: cidade, id_usuario: id_usuario, 
                           total_confirmacoes_existencia: total_confirmacoes_existencia,
-                          total_confirmacoes_resolvido: total_confirmacoes_resolvido)
+                          total_confirmacoes_resolvido: total_confirmacoes_resolvido,
+                          id_tipo_incidente: 1)
     if marking.save
         render json: marking
     else
@@ -50,7 +52,7 @@ class MarkingsController < ApplicationController
   end
 
   def edit
-    marking = Marking.find_by_latitude_and_longitude(params[:marking][:latitude], params[:marking][:longitude])
+    marking = Marking.find_by_latitude_and_longitude(params[:latitude], params[:longitude])
     marking.titulo_incidente = params[:name]
     marking.descricao_incidente = params[:description]
     marking.save
