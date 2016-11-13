@@ -1,3 +1,4 @@
+# Validate description and title of pev and save name and email of user associated to the created pev
 class Pev < ActiveRecord::Base
   attr_accessor :author_name, :author_email
   self.table_name = "pevs"

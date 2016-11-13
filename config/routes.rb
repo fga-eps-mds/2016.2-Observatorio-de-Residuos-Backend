@@ -1,3 +1,4 @@
+# All routes of the app
 Rails.application.routes.draw do
 
   post 'sessions/login'     => 'sessions#create'

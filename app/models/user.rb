@@ -1,3 +1,4 @@
+# Validate name and email of sign up
 class User < ActiveRecord::Base
   self.table_name = "usuarios"
 

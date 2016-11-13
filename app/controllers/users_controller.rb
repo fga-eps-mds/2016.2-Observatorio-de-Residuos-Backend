@@ -1,6 +1,8 @@
+# Users controller
 class UsersController < ApplicationController
 #   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
+  # Verify if an email already exist or not to allow or not other users to sign up with an email
   def verify_email
       user = User.find_by_email(params[:email])
       if(user == nil)
@@ -10,6 +12,7 @@ class UsersController < ApplicationController
       end
   end
 
+  # Edit user information changed for himself/herself
   def edit
     user = User.find_by_email(params[:email]);
     user.update(nome_completo: params[:name], perfil: params[:profile]);
@@ -17,6 +20,8 @@ class UsersController < ApplicationController
   end
   #arrumar o validates do email, enviar dois erros para o ionic
   #quando o validates da erro: "email ja cadastrado".
+
+  # Create user with success if has complete information and failed if has lack information
   def create
     primeiro_nome = params[:first_name]
     ultimo_nome = params[:last_name]

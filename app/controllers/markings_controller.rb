@@ -1,4 +1,6 @@
+# Markings controller
 class MarkingsController < ApplicationController
+  # Keep user name and email in a marking that user marked and search for users marked markings
   def index
     markings = Marking.all
     markings.each do |m|
@@ -8,6 +10,8 @@ class MarkingsController < ApplicationController
     end
     render json: markings, methods:[:author_name, :author_email]
   end
+
+  # Create marking with success if has complete information and failed if has lack information
   def create
     titulo_incidente = params[:name]
     descricao_incidente = params[:description]
@@ -27,6 +31,7 @@ class MarkingsController < ApplicationController
     end
   end
 
+  # Edit marking information changed
   def edit
     marking = Marking.find_by_latitude_and_longitude(params[:marking][:latitude], params[:marking][:longitude])
     marking.titulo_incidente = params[:name]

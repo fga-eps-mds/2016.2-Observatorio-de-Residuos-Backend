@@ -1,3 +1,4 @@
+# Create type of markings and search for markings
 class MarkingTypesController < ApplicationController
   def index
     marking_types = MarkingType.where(:tipo_incidente_publicado => 1)
