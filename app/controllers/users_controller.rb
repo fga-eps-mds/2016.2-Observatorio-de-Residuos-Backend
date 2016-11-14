@@ -38,4 +38,16 @@ class UsersController < ApplicationController
         render json: { error: 'Incorrect credentials' }, status: 401
     end
   end
+
+  def deactivate
+    user = User.find_by_id_usuario(params[:id])
+    puts user.senha
+    if user.senha == params[:password]
+      user.ativo = false
+      user.save
+      render json: user
+    else
+      render json: { error: 'Incorrect credentials' }, status: 401
+    end
+  end
 end

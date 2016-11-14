@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   post 'sessions/login'     => 'sessions#create'
   post 'users/create'       => 'users#create'
   post 'users/verify_email' => 'users#verify_email'
+  post 'users/deactivate'   => 'users#deactivate'
   post 'users/edit'         => 'users#edit'
   post 'markings/create'    => 'markings#create'
   post 'pevs/create'        => 'pevs#create'
