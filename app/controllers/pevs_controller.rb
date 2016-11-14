@@ -1,4 +1,6 @@
+# PEVs controller
 class PevsController < ApplicationController
+  # Keep user name and email in a pev that user marked and search for users marked pevs
   def index
     pevs = Pev.all
     pevs.each do |m|
@@ -9,17 +11,20 @@ class PevsController < ApplicationController
     render json: pevs, methods:[:author_name, :author_email]
   end
 
+  # get first pev of database
   def getOnePev
     pev = Pev.first
     render json: pev;
   end
 
+  # Edit pev information changed
   def edit
     pev = Pev.find_by_latitude_and_longitude(params[:pev][:latitude], params[:pev][:longitude])
     pev.update(titulo_pev: params[:name], descricao_pev: params[:description]);
     render json: pev;
   end
 
+  # Create pev with success if has complete information and failed if has lack information
   def create
     titulo_pev = params[:name]
     descricao_pev = params[:description]

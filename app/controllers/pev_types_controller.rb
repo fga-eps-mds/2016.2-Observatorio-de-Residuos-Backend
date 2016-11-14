@@ -1,3 +1,4 @@
+# Create type of pevs
 class PevTypesController < ApplicationController
   def index
     pev_types = PevType.where(:tipo_pev_publicado => 1)

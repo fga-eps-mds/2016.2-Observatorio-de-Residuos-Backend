@@ -1,4 +1,6 @@
+# Markings controller
 class MarkingsController < ApplicationController
+  # Keep user name and email in a marking that user marked and search for users marked markings
   def index
     markings = Marking.all
     markings.each do |m|
@@ -9,21 +11,18 @@ class MarkingsController < ApplicationController
     render json: markings, methods:[:author_name, :author_email]
   end
 
-  def new
-    marking = Marking.new
-  end
-
+  # Create marking with success if has complete information and failed if has lack information
   def create
     titulo_incidente = params[:name]
     descricao_incidente = params[:description]
-    id_tipo_incidente = 12
+    id_tipo_incidente = params[:id_marking_type]
     imagem_incidente = 'imagem'
     latitude = params[:latitude]
     longitude = params[:longitude]
     estado = 'GO'
     cidade = 'Luziania'
     id_usuario = User.find_by_email(params[:author_email]).id_usuario;
-    marking = Marking.new(titulo_incidente: titulo_incidente, descricao_incidente: descricao_incidente, id_tipo_incidente: id_tipo_incidente, imagem_incidente: imagem_incidente, latitude: latitude, longitude: longitude, estado: estado, cidade: cidade, id_usuario: id_usuario)
+    marking = Marking.new(titulo_incidente: titulo_incidente, id_tipo_incidente: id_tipo_incidente, descricao_incidente: descricao_incidente, id_tipo_incidente: id_tipo_incidente, imagem_incidente: imagem_incidente, latitude: latitude, longitude: longitude, estado: estado, cidade: cidade, id_usuario: id_usuario)
     if marking.save
         render json: marking
     else
@@ -32,10 +31,12 @@ class MarkingsController < ApplicationController
     end
   end
 
+  # Edit marking information changed
   def edit
     marking = Marking.find_by_latitude_and_longitude(params[:marking][:latitude], params[:marking][:longitude])
     marking.titulo_incidente = params[:name]
     marking.descricao_incidente = params[:description]
+    marking.id_tipo_incidente = params[:id_marking_type]
     marking.save
     render json: marking;
   end
