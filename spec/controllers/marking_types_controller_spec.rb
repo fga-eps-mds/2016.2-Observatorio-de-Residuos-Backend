@@ -11,8 +11,11 @@ RSpec.describe MarkingTypesController, type: :controller do
 	describe "GET find" do
 		it "Should render a specific marking by id" do
 			get :find, :id => 1
-			markingType = { "id_tipo_incidente":1,"tipo_incidente":"Lixo acumulado em margens de rios e lagoas","tipo_incidente_ordem":1,"tipo_incidente_publicado":true,"tipo_incidente_usuario":"Rodrigo","tipo_incidente_adicionado_em":"2016-08-09T01:55:44.000Z" }
-			expect(response.body).to eq(markingType.to_json)
+			expect(JSON.parse(response.body)["id_tipo_incidente"]).to eq(1)
+			expect(JSON.parse(response.body)["tipo_incidente"]).to eq("Lixo acumulado em margens de rios e lagoas")
+			expect(JSON.parse(response.body)["tipo_incidente_ordem"]).to eq(1)
+			expect(JSON.parse(response.body)["tipo_incidente_publicado"]).to eq(true)
+			expect(JSON.parse(response.body)["tipo_incidente_usuario"]).to eq("Rodrigo")
 		end
 	end
 end
