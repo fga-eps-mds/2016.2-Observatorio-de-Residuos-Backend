@@ -33,9 +33,7 @@ RSpec.describe UsersController, type: :controller do
 					:gender=>"mas",
 					:profile_type=>"Estudante"
 				}
-			puts response.body
-			puts User.last.to_json
-		    expect(JSON.parse(response.body)["id_usuario"]).to eq(User.last.id_usuario)
+			expect(JSON.parse(response.body)["id_usuario"]).to eq(User.last.id_usuario)
 	    end
 
 	    it "should not successfull create a user" do
