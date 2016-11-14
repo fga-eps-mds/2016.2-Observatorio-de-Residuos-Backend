@@ -15,13 +15,13 @@ class PevsController < ApplicationController
   end
 
   def edit
-    pev = Pev.find_by_latitude_and_longitude(params[:pev][:latitude], params[:pev][:longitude])
+    pev = Pev.find_by_latitude_and_longitude(params[:latitude], params[:longitude])
     pev.update(titulo_pev: params[:name], descricao_pev: params[:description]);
     render json: pev;
   end
 
   def increment
-    pev = Pev.find_by_latitude_and_longitude(params[:pev][:latitude], params[:pev][:longitude])
+    pev = Pev.find_by_latitude_and_longitude(params[:latitude], params[:longitude])
     pev.total_confirmacoes_funcionando = params[:likes]
     pev.total_confirmacoes_fechou = params[:dislikes]
     pev.save
