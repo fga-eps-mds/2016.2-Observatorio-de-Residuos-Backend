@@ -53,4 +53,11 @@ RSpec.describe UsersController, type: :controller do
 	      expect(response.body).to eq({:error => "Incorrect credentials"}.to_json)
 	    end
   	end
+
+  	describe "GET edit" do 
+  		it "should render json with edited user" do
+  			get :edit, :email => "test@email.com", :name=>"outroNome", :perfil=>"Estudante"
+  			expect(JSON.parse(response.body)["id_usuario"]).to eq(User.last.id_usuario)
+  		end
+  	end
 end
