@@ -1,3 +1,5 @@
+# Every time a user sign in at application it create a session for user or if email  or password are wrong then
+# user is unauthorized to enter in application
 class SessionsController < ApplicationController
 
   def create

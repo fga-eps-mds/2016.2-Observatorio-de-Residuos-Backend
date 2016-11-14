@@ -1,3 +1,4 @@
+# PEV types
 class AddTypesForPevs < ActiveRecord::Migration
   def change
     change_table :pevs do |t|
