@@ -31,7 +31,10 @@ class UsersController < ApplicationController
     perfil = params[:profile]
     codigo_verificacao = SecureRandom.urlsafe_base64(nil, false);
 
-    user = User.new(nome_completo: nome_completo, perfil: perfil, email: usuario,usuario: usuario, senha: senha, codigo_verificacao: codigo_verificacao)
+    user = User.new(nome_completo: nome_completo, perfil: perfil, 
+                    email: usuario,usuario: usuario, senha: senha, 
+                    codigo_verificacao: codigo_verificacao,
+                    ativo: true)
     if user.save
         render json: user
     else
