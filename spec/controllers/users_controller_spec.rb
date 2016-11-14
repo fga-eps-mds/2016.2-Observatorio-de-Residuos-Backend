@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
 	before :all do
+		UserAccess.destroy_all
 		User.destroy_all
 		User.create! :codigo_verificacao=>"Lorem Ipsum", :usuario=>"aspdasd@hotmail.com",:nome_completo=>"test teste teste", :email=>"test@email.com", :senha=>"123456"
 	end
@@ -32,9 +33,7 @@ RSpec.describe UsersController, type: :controller do
 					:gender=>"mas",
 					:profile_type=>"Estudante"
 				}
-			puts response.body
-			puts User.last.to_json
-		    expect(JSON.parse(response.body)["id_usuario"]).to eq(User.last.id_usuario)
+			expect(JSON.parse(response.body)["id_usuario"]).to eq(User.last.id_usuario)
 	    end
 
 	    it "should not successfull create a user" do
@@ -51,5 +50,12 @@ RSpec.describe UsersController, type: :controller do
 	      expect(response.status).to be(401)
 	      expect(response.body).to eq({:error => "Incorrect credentials"}.to_json)
 	    end
+  	end
+
+  	describe "GET edit" do 
+  		it "should render json with edited user" do
+  			get :edit, :email => "test@email.com", :name=>"outroNome", :perfil=>"Estudante"
+  			expect(JSON.parse(response.body)["id_usuario"]).to eq(User.last.id_usuario)
+  		end
   	end
 end

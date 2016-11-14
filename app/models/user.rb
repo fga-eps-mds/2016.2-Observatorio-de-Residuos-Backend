@@ -1,5 +1,6 @@
 # Validate name and email of sign up
 class User < ActiveRecord::Base
+  belongs_to :user_access, :dependent => :destroy
   self.table_name = "usuarios"
 
    VALID_NAME_FORMAT= /[a-z|A-Z áéíóúÁÉÍÓÚçÇâôãõÂÔÃÕ]/

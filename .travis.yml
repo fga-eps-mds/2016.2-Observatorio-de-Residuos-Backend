@@ -13,7 +13,7 @@ before_script:
 
 script:
   - mysql -uroot -e 'CREATE DATABASE IF NOT EXISTS `observatorio-producaoTest` CHARACTER SET utf8 COLLATE utf8_general_ci'
-  - mysql observatorio-producaoTest < db/banco_observatorio.sql -uroot
+  - mysql observatorio-producaoTest < db/observatorio_producao.sql -uroot
   - bundle exec rake db:migrate RAILS_ENV=test
   - bundle exec rspec spec
 
