@@ -18,4 +18,5 @@ Rails.application.routes.draw do
   get  'marking_types/:id' => 'marking_types#find'
   get  'pevs/getonepev'    => 'pevs#getOnePev'
   get  'articles'          => 'articles#index'
+  get  'projects'          => 'projects#index'
 end
