@@ -36,7 +36,7 @@ RSpec.describe UsersController, type: :controller do
 			expect(JSON.parse(response.body)["id_usuario"]).to eq(User.last.id_usuario)
 	    end
 
-	    it "should not successfull create a user" do
+	    it "should not successfull create a user with invalid email" do
 	      post :create,{
 	        :first_name=>"test",
 					:last_name=>"passed",
@@ -47,8 +47,23 @@ RSpec.describe UsersController, type: :controller do
 					:gender=>"mas",
 					:profile_type=>"Estudante"
 	      }
-	      expect(response.status).to be(401)
-	      expect(response.body).to eq({:error => "Incorrect credentials"}.to_json)
+	      expect(response.status).to be(400)
+	      expect(response.body).to eq({:error => "Invalid Email"}.to_json)
+	    end
+
+	    it "Should not successfull create a user with an existing email" do
+	    	post :create,{
+	        :first_name=>"test",
+					:last_name=>"passed",
+					:email=>"test@email.com",
+					:password_digest=>"123456",
+					:birth_date => nil,
+					:city=>"df",
+					:gender=>"mas",
+					:profile_type=>"Estudante"
+	      	}
+	      	expect(response.status).to be(401)
+	      	expect(response.body).to eq({:error => "Email already used"}.to_json)
 	    end
   	end
 
