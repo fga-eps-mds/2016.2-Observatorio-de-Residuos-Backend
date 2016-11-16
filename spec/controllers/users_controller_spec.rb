@@ -8,16 +8,15 @@ RSpec.describe UsersController, type: :controller do
 	end
 
 	describe "GET verify_email" do
-		it "Should render json with true param" do
+		it "Should render json with found user" do
 			get :verify_email, :email => "test@email.com"
-
-		    expect(response.body).to eq({:userExist => true}.to_json)
+		    expect(response.body == User.find_by_email("test@email.com").to_json).to be(true)
 		end
 
 		it "Should render json with false param" do
 			get :verify_email, :email => "teste@email.com"
 
-		    expect(response.body).to eq({:userExist => false}.to_json)
+		    expect(response.body).to eq({:newUser => true}.to_json)
 		end
 	end
 
