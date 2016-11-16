@@ -1,3 +1,4 @@
+# User Acess
 class CreateUserAccesses < ActiveRecord::Migration
   def change
     create_table :user_accesses do |t|

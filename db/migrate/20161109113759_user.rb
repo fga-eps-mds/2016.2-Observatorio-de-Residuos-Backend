@@ -1,3 +1,4 @@
+# User
 class User < ActiveRecord::Migration
   def change
   	 change_table :usuarios do |t|
