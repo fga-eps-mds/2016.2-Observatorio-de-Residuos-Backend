@@ -18,7 +18,7 @@ script:
   - bundle exec rspec spec
 
 after_success:
-  - CODECLIMATE_REPO_TOKEN=31c7a0fe383cb7ccb088534e21bb44fe5e84bbbf9b296fc4f0518da24cdcc26b bundle exec rake 
+  - CODECLIMATE_REPO_TOKEN=2295d3595bea327ad6b16da50000e97765864033786a392b568eadfceea62476 bundle exec rake 
 
 notifications:
   email:
