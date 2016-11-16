@@ -1,28 +1,34 @@
+# PEVs controller
 class PevsController < ApplicationController
+  # Keep user name and email in a pev that user marked and search for users marked pevs
   def index
     pevs = Pev.all
     pevs.each do |m|
-      m.author_name = User.find(m.id_usuario).nome_completo
-      m.author_email = User.find(m.id_usuario).email
+      user = User.find_by_id_usuario(m.id_usuario);
+      m.author_name =  (user!=nil) ? user.nome_completo : "anonimo"
+      m.author_email = (user!=nil) ? user.email : "anonimo"
     end
     render json: pevs, methods:[:author_name, :author_email]
   end
 
+  # get first pev of database
   def getOnePev
     pev = Pev.first
     render json: pev;
   end
 
+  # Edit pev information changed
   def edit
     pev = Pev.find_by_latitude_and_longitude(params[:pev][:latitude], params[:pev][:longitude])
     pev.update(titulo_pev: params[:name], descricao_pev: params[:description]);
     render json: pev;
   end
 
+  # Create pev with success if has complete information and failed if has lack information
   def create
     titulo_pev = params[:name]
     descricao_pev = params[:description]
-    id_tipo_pev = 1
+    id_tipo_pev = PevType.last.id
     latitude = params[:latitude]
     longitude = params[:longitude]
     estado = 'XX'
@@ -44,10 +50,5 @@ class PevsController < ApplicationController
         render json: { error: 'Invalid parameters' }, status: 401
         puts pev.errors.messages
     end
-  end
-
-  private
-  def pev_params
-    params.require(:pev).permit(:author_email, :name, :plastic, :paper, :metal, :glass, :latitude, :longitude, :description)
   end
 end

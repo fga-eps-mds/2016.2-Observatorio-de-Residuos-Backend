@@ -2841,6 +2841,10 @@ CREATE TABLE IF NOT EXISTS `contribuicoes` (
   KEY `FK_tipo_contribuicao` (`id_tipo_contribuicao`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+INSERT INTO `contribuicoes` (`id_contribuicao`, `id_tipo_contribuicao`, `titulo_contribuicao`, `resumo_contribuicao`, `texto_contribuicao`, `id_usuario` ) VALUES
+
+(1, 1, 'BioGama na Unb', 'Reciclagem de óleo para evitar poluição', 'Este é um projeto criado na Universidade de Brasília no campus do Gama. O objetivo é concientizar os alunos e a população ao decarte correto de óleo', 21);
+
 -- --------------------------------------------------------
 
 --
@@ -3381,6 +3385,8 @@ CREATE TABLE IF NOT EXISTS `tipos_contribuicoes` (
   PRIMARY KEY (`id_tipo_contribuicao`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+INSERT INTO `tipos_contribuicoes` (`id_tipo_contribuicao`, `tipo_contribuicao`, `tipo_contribuicao_usuario`) VALUES
+(1, 'Projeto Acadêmico', 'Luiz Guilherme');
 -- --------------------------------------------------------
 
 --
@@ -3430,6 +3436,9 @@ CREATE TABLE IF NOT EXISTS `tipos_pevs` (
   PRIMARY KEY (`id_tipo_pev`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+
+INSERT INTO tipos_pevs(tipo_pev, tipo_pev_usuario, tipo_pev_publicado)
+ VALUES('coleta seletiva', 'AMOEDO', 1);
 -- --------------------------------------------------------
 
 --
