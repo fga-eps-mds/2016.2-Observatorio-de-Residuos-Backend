@@ -7,7 +7,6 @@
 default: &default
   adapter: mysql2
   username: root
-  password: root
   host: localhost
 
 development:
