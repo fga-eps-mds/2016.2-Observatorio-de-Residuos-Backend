@@ -72,4 +72,17 @@ RSpec.describe UsersController, type: :controller do
   			expect(JSON.parse(response.body)["id_usuario"]).to eq(User.last.id_usuario)
   		end
   	end
+
+  	describe "GET deactivate" do
+  		it "Should deactivate the account" do
+  			get :deactivate, :id=>User.last.id, :password=>User.last.senha
+  			expect(JSON.parse(response.body)["ativo"]).to eq(false)
+  		end
+
+  		it "Should return 401 status if the password is wrong" do
+  			get :deactivate, :id=>User.last.id, :password=>"ErrandoASenha"
+  			expect(response.status).to be(401)
+	      	expect(response.body).to eq({:error => "Incorrect credentials"}.to_json)
+  		end
+  	end
 end
