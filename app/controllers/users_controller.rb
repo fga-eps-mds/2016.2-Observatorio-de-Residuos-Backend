@@ -44,7 +44,6 @@ class UsersController < ApplicationController
 
   def deactivate
     user = User.find_by_id_usuario(params[:id])
-    puts user.senha
     if user.senha == params[:password]
       user.ativo = false
       user.save
