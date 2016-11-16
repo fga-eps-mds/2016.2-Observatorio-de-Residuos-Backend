@@ -6,9 +6,9 @@ class UsersController < ApplicationController
   def verify_email
       user = User.find_by_email(params[:email])
       if(user == nil)
-          render json: {"userExist": false}
+          render json: {"newUser": true}
       else
-          render json: {"userExist": true}
+          render json: user
       end
   end
 
