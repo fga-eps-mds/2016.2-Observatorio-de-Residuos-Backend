@@ -28,7 +28,7 @@ class PevsController < ApplicationController
   def create
     titulo_pev = params[:name]
     descricao_pev = params[:description]
-    id_tipo_pev = 1
+    id_tipo_pev = PevType.last.id
     latitude = params[:latitude]
     longitude = params[:longitude]
     estado = 'XX'

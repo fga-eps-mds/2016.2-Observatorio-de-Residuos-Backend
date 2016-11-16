@@ -18,8 +18,6 @@ class UsersController < ApplicationController
     user.update(nome_completo: params[:name], perfil: params[:profile]);
     render json: user;
   end
-  #arrumar o validates do email, enviar dois erros para o ionic
-  #quando o validates da erro: "email ja cadastrado".
 
   # Create user with success if has complete information and failed if has lack information
   def create
@@ -38,7 +36,12 @@ class UsersController < ApplicationController
     if user.save
         render json: user
     else
-        render json: { error: 'Incorrect credentials' }, status: 401
+        user = User.find_by_email(params[:email]);
+        if(user == nil)
+          render json: { error: 'Invalid Email' }, status: 400;
+        else
+          render json: { error: 'Email already used' }, status: 401;
+        end
     end
   end
 
