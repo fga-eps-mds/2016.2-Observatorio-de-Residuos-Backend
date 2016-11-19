@@ -13,9 +13,9 @@ class MarkingsController < ApplicationController
 
   # Create marking with success if has complete information and failed if has lack information
   def create
-    titulo_incidente = params[:name]
-    descricao_incidente = params[:description]
-    id_tipo_incidente = params[:id_marking_type]
+    titulo_incidente = params[:titulo_incidente]
+    descricao_incidente = params[:descricao_incidente]
+    id_tipo_incidente = params[:id_tipo_incidente]
     imagem_incidente = 'imagem'
     latitude = params[:latitude]
     longitude = params[:longitude]
@@ -33,10 +33,10 @@ class MarkingsController < ApplicationController
 
   # Edit marking information changed
   def edit
-    marking = Marking.find_by_latitude_and_longitude(params[:marking][:latitude], params[:marking][:longitude])
-    marking.titulo_incidente = params[:name]
-    marking.descricao_incidente = params[:description]
-    marking.id_tipo_incidente = params[:id_marking_type]
+    marking = Marking.find_by_id_incidente(params[:id_incidente])
+    marking.titulo_incidente = params[:titulo_incidente]
+    marking.descricao_incidente = params[:descricao_incidente]
+    marking.id_tipo_incidente = params[:id_tipo_incidente]
     marking.save
     render json: marking;
   end
