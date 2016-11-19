@@ -19,15 +19,17 @@ class PevsController < ApplicationController
 
   # Edit pev information changed
   def edit
-    pev = Pev.find_by_latitude_and_longitude(params[:pev][:latitude], params[:pev][:longitude])
-    pev.update(titulo_pev: params[:name], descricao_pev: params[:description]);
+    pev = Pev.find_by_id_pev(params[:pev][:id_pev])
+    pev.update(titulo_pev: params[:titulo_pev], descricao_pev: params[:descricao_pev],
+      paper: params[:paper], metal: params[:metal], plastic: params[:plastic], 
+      glass: params[:glass]);
     render json: pev;
   end
 
   # Create pev with success if has complete information and failed if has lack information
   def create
-    titulo_pev = params[:name]
-    descricao_pev = params[:description]
+    titulo_pev = params[:titulo_pev]
+    descricao_pev = params[:descricao_pev]
     id_tipo_pev = PevType.last.id
     latitude = params[:latitude]
     longitude = params[:longitude]
