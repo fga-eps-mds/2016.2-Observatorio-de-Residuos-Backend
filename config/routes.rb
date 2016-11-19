@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   post 'pevs/edit'          => 'pevs#edit'
   post 'markings/edit'      => 'markings#edit'
   post 'complaints/create'  => 'complaints#create'
+  post 'pev_complaints/create' => 'pev_complaints#create'
+
 
   get  'profiles'          => 'profiles#index'
   get  'markings'          => 'markings#index'
@@ -22,4 +24,6 @@ Rails.application.routes.draw do
   get  'articles'          => 'articles#index'
   get  'projects'          => 'projects#index'
   get  'complaints'        => 'complaints#index'
+  get  'pev_complaints'    => 'pev_complaints#index'
+
 end
