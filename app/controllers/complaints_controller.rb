@@ -7,7 +7,8 @@ class ComplaintsController < ApplicationController
     title = params[:title]
     description = params[:description]
     author = params[:author]
-    complaint = Complaint.new(title: title, description: description, author: author)
+    id_marking = params[:id_marking]
+    complaint = Complaint.new(title: title, description: description, author: author, id_marking: id_marking)
     if complaint.save
         render json: complaint
     else
