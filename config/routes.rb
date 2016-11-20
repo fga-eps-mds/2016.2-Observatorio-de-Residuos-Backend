@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   post 'pevs/create'        => 'pevs#create'
   post 'pevs/edit'          => 'pevs#edit'
   post 'markings/edit'      => 'markings#edit'
-
+  post 'pevs/increment'     => 'pevs#increment'
+  post 'markings/increment' => 'markings#increment'
+  
   get  'profiles'          => 'profiles#index'
   get  'markings'          => 'markings#index'
   get  'pevs'              => 'pevs#index'

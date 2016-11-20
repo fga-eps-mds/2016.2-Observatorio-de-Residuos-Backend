@@ -11,6 +11,20 @@ class MarkingsController < ApplicationController
     render json: markings, methods:[:author_name, :author_email]
   end
 
+  def new
+    marking = Marking.new
+  end
+
+  def increment
+    marking = Marking.find_by_latitude_and_longitude(params[:latitude], params[:longitude])
+    marking.total_confirmacoes_existencia = params[:likes]
+    marking.total_confirmacoes_resolvido = params[:dislikes]
+    puts(marking.total_confirmacoes_existencia)
+    marking.save
+    render json: marking;
+  end
+
+
   # Create marking with success if has complete information and failed if has lack information
   def create
     titulo_incidente = params[:titulo_incidente]
@@ -21,8 +35,16 @@ class MarkingsController < ApplicationController
     longitude = params[:longitude]
     estado = 'GO'
     cidade = 'Luziania'
+    total_confirmacoes_existencia = params[:likes]
+    total_confirmacoes_resolvido = params[:dislikes]
+
     id_usuario = User.find_by_email(params[:author_email]).id_usuario;
-    marking = Marking.new(titulo_incidente: titulo_incidente, id_tipo_incidente: id_tipo_incidente, descricao_incidente: descricao_incidente, id_tipo_incidente: id_tipo_incidente, imagem_incidente: imagem_incidente, latitude: latitude, longitude: longitude, estado: estado, cidade: cidade, id_usuario: id_usuario)
+
+    marking = Marking.new(titulo_incidente: titulo_incidente, id_tipo_incidente: id_tipo_incidente, 
+                          descricao_incidente: descricao_incidente, id_tipo_incidente: id_tipo_incidente, 
+                          imagem_incidente: imagem_incidente, latitude: latitude, longitude: longitude, 
+                          estado: estado, cidade: cidade, id_usuario: id_usuario, total_confirmacoes_existencia: total_confirmacoes_existencia,
+                          total_confirmacoes_resolvido: total_confirmacoes_resolvido)
     if marking.save
         render json: marking
     else
