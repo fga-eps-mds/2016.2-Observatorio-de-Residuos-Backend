@@ -39,18 +39,26 @@ class PevsController < ApplicationController
     metal = params[:metal]
     plastic = params[:plastic]
     glass = params[:glass]
-    id_usuario = User.find_by_email(params[:author_email]).id_usuario;
+    
+    user = User.find_by_email(params[:author_email])
 
-    pev = Pev.new(titulo_pev: titulo_pev, descricao_pev: descricao_pev,
+    if !user.nil?
+      id_usuario = user.id_usuario      
+      pev = Pev.new(titulo_pev: titulo_pev, descricao_pev: descricao_pev,
                   id_tipo_pev: id_tipo_pev, latitude: latitude,
                   longitude: longitude, estado: estado, cidade: cidade,
                   id_usuario: id_usuario,paper: paper, metal: metal,
                   plastic: plastic, glass: glass)
-    if pev.save
+      if pev.save
         render json: pev
+      else
+          render json: { error: 'Invalid parameters' }, status: 401
+      end   
     else
-        render json: { error: 'Invalid parameters' }, status: 401
-        puts pev.errors.messages
-    end
+          render json: { error: 'Invalid parameters' }, status: 401
+    end      
+
+    
+    
   end
 end
