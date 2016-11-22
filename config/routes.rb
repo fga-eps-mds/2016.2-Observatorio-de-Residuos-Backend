@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   post 'pevs/increment'     => 'pevs#increment'
   post 'markings/increment' => 'markings#increment'
   
+  post 'complaints/create'  => 'complaints#create'
+  post 'pev_complaints/create' => 'pev_complaints#create'
+
+
   get  'profiles'          => 'profiles#index'
   get  'markings'          => 'markings#index'
   get  'pevs'              => 'pevs#index'
@@ -24,5 +28,7 @@ Rails.application.routes.draw do
   get  'projects'          => 'projects#index'
   get  'user/:id/markings' => 'sessions#getMarkings'
   get  'user/:id/pevs'     => 'sessions#getPevs'
+  get  'complaints'        => 'complaints#index'
+  get  'pev_complaints'    => 'pev_complaints#index'
 
 end
