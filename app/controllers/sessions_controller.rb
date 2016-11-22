@@ -19,4 +19,14 @@ class SessionsController < ApplicationController
       end
   end
 
+  def getMarkings
+    user = User.find_by_id_usuario(params[:id])
+    render json: user.markings
+  end
+
+  def getPevs
+    user = User.find_by_id_usuario(params[:id])
+    render json: user.pevs
+  end
+
 end
