@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   belongs_to :user_access, :dependent => :destroy
   self.table_name = "usuarios"
   has_and_belongs_to_many :markings
+  has_and_belongs_to_many :pevs
 
    VALID_NAME_FORMAT= /[a-z|A-Z áéíóúÁÉÍÓÚçÇâôãõÂÔÃÕ]/
    validates :nome_completo, presence: true, length: {maximum: 80}, format: { with: VALID_NAME_FORMAT}

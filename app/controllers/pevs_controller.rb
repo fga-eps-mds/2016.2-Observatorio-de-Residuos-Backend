@@ -28,9 +28,11 @@ class PevsController < ApplicationController
 
   # Method of evaluation pev
   def increment
-    pev = Pev.find_by_id_pev(params[:pev][:id_pev])
-    pev.total_confirmacoes_funcionando = params[:likes]
-    pev.total_confirmacoes_fechou = params[:dislikes]
+    user = User.find_by_id_usuario(params[:id_usuario])
+    pev = Pev.find_by_id_pev(params[:id_pev])
+    pev.total_confirmacoes_funcionando = params[:total_confirmacoes_funcionando]
+    pev.total_confirmacoes_fechou = params[:total_confirmacoes_fechou]
+    user.pevs << pev
     pev.save
     render json: pev;
   end
