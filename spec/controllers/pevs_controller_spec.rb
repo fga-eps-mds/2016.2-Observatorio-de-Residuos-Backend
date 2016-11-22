@@ -16,7 +16,8 @@ RSpec.describe PevsController, type: :controller do
 					:logradouro=>"seila", :numero=>"1", :complemento=>"seila", 
 					:id_usuario=>User.last.id, :total_visualizacoes=>0, :total_confirmacoes_funcionando=>0, 
 					:total_confirmacoes_fechou=>0, :total_denuncias=>0, :status=>"open", 
-					:adicionado_em=>DateTime.now, :publicado=>true
+					:adicionado_em=>DateTime.now, :publicado=>true, :paper=>true, 
+					:metal=>false, :plastic=>false, :glass=>false
 	end
 
 	describe "GET index" do
@@ -39,7 +40,9 @@ RSpec.describe PevsController, type: :controller do
 
 	describe "GET edit" do
 		it "Should render edited pev" do
-			get :edit, :pev=>{:latitude=>10.0, :longitude=>1.0}, :name=>"outro nome", :description=>"outra descrição"
+			last_pev = Pev.last
+			get :edit, :pev=>{:id_pev=>last_pev.id}, :descricao_pev=>"outra descrição", :titulo_pev=>"outro nome", :paper=>true, :metal=>false, :plastic=>false, :glass=>false
+
 			expect(JSON.parse(response.body)["titulo_pev"]).to eq("outro nome")
 			expect(JSON.parse(response.body)["descricao_pev"]).to eq("outra descrição")
 		end
@@ -48,8 +51,9 @@ RSpec.describe PevsController, type: :controller do
 	describe "POST create" do
 		it "Should successfully create a pev" do
 			post :create,{
+					:titulo_pev=>"nova pev",
 					:name=>"nova pev", 
-					:description=>"description", 
+					:descricao_pev=>"description", 
 					:latitude=>50.0,
 					:longitude=>70.5, 
 					:paper=>true, 
@@ -61,19 +65,34 @@ RSpec.describe PevsController, type: :controller do
 			expect(JSON.parse(response.body)["titulo_pev"]).to eq("nova pev")
 		end
 
-		#it "Should not successfull create a pev" do
-		#	post :create,{
-		#			:name=>"nova pev", 
-		#			:description=>"description", 
-		#			:longitude=>70.5, 
-		#			:paper=>true, 
-		#			:metal=>true, 
-		#			:plastic=>false,
-		#			:glass=>false, 
-		#			:author_email=>"test@email.com"
-		#	}
-		#	#expect(response.status).to be(401)
-		#	expect(response.body).to eq({:error => "Invalid parameters"}.to_json)
-		#end
+		it "Should not successfull create a pev with a wrong email" do
+			post :create,{
+					:name=>"nova pev", 
+					:description=>"description", 
+					:longitude=>70.5, 
+					:paper=>true, 
+					:metal=>true, 
+					:plastic=>false,
+					:glass=>false, 
+					:author_email=>"test@email"
+			}
+			expect(response.status).to be(401)
+			expect(response.body).to eq({:error => "Invalid parameters"}.to_json)
+		end
+
+		it "Should not successfull create a pev with a wrong params" do
+			post :create,{
+					:name=>"nova pev", 
+					:description=>"description", 
+					:longitude=>70.5, 
+					:paper=>true, 
+					:metal=>true, 
+					:plastic=>false,
+					:glass=>false, 
+					:author_email=>"test@email.com"
+			}
+			expect(response.status).to be(401)
+			expect(response.body).to eq({:error => "Invalid parameters"}.to_json)
+		end
 	end
 end

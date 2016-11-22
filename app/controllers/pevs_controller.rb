@@ -26,6 +26,17 @@ class PevsController < ApplicationController
     render json: pev;
   end
 
+  # Method of evaluation pev
+  def increment
+    user = User.find_by_id_usuario(params[:id_usuario])
+    pev = Pev.find_by_id_pev(params[:id_pev])
+    pev.total_confirmacoes_funcionando = params[:total_confirmacoes_funcionando]
+    pev.total_confirmacoes_fechou = params[:total_confirmacoes_fechou]
+    user.pevs << pev
+    pev.save
+    render json: pev;
+  end
+
   # Create pev with success if has complete information and failed if has lack information
   def create
     titulo_pev = params[:titulo_pev]
@@ -39,18 +50,30 @@ class PevsController < ApplicationController
     metal = params[:metal]
     plastic = params[:plastic]
     glass = params[:glass]
-    id_usuario = User.find_by_email(params[:author_email]).id_usuario;
+    total_confirmacoes_funcionando = params[:likes]
+    total_confirmacoes_fechou = params[:dislikes]
+    
+    user = User.find_by_email(params[:author_email])
 
-    pev = Pev.new(titulo_pev: titulo_pev, descricao_pev: descricao_pev,
+    if !user.nil?
+      id_usuario = user.id_usuario      
+      pev = Pev.new(titulo_pev: titulo_pev, descricao_pev: descricao_pev,
                   id_tipo_pev: id_tipo_pev, latitude: latitude,
                   longitude: longitude, estado: estado, cidade: cidade,
                   id_usuario: id_usuario,paper: paper, metal: metal,
-                  plastic: plastic, glass: glass)
+                  plastic: plastic, glass: glass,
+                  total_confirmacoes_funcionando: total_confirmacoes_funcionando,
+                  total_confirmacoes_fechou: total_confirmacoes_fechou)
     if pev.save
         render json: pev
+      else
+          render json: { error: 'Invalid parameters' }, status: 401
+      end   
     else
-        render json: { error: 'Invalid parameters' }, status: 401
-        puts pev.errors.messages
-    end
+          render json: { error: 'Invalid parameters' }, status: 401
+    end      
+
+    
+    
   end
 end
