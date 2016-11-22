@@ -16,10 +16,11 @@ class MarkingsController < ApplicationController
   end
 
   def increment
-    marking = Marking.find_by_latitude_and_longitude(params[:latitude], params[:longitude])
-    marking.total_confirmacoes_existencia = params[:likes]
-    marking.total_confirmacoes_resolvido = params[:dislikes]
-    puts(marking.total_confirmacoes_existencia)
+    user = User.find_by_id_usuario(params[:id_usuario]);
+    marking = Marking.find_by_id_incidente(params[:id_incidente])
+    marking.total_confirmacoes_existencia = params[:total_confirmacoes_existencia]
+    marking.total_confirmacoes_resolvido = params[:total_confirmacoes_resolvido]
+    user.markings << marking
     marking.save
     render json: marking;
   end

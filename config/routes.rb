@@ -22,6 +22,6 @@ Rails.application.routes.draw do
   get  'pevs/getonepev'    => 'pevs#getOnePev'
   get  'articles'          => 'articles#index'
   get  'projects'          => 'projects#index'
-  get  'user/:id/markings' => 'sessions#get_markings'
+  get  'user/:id/markings' => 'sessions#getMarkings'
 
 end
