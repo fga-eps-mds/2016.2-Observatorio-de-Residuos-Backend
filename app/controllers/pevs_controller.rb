@@ -50,8 +50,8 @@ class PevsController < ApplicationController
     metal = params[:metal]
     plastic = params[:plastic]
     glass = params[:glass]
-    total_confirmacoes_funcionando = params[:likes]
-    total_confirmacoes_fechou = params[:dislikes]
+    total_confirmacoes_funcionando = params[:total_confirmacoes_funcionando]
+    total_confirmacoes_fechou = params[:total_confirmacoes_fechou]
     
     user = User.find_by_email(params[:author_email])
 
@@ -64,7 +64,7 @@ class PevsController < ApplicationController
                   plastic: plastic, glass: glass,
                   total_confirmacoes_funcionando: total_confirmacoes_funcionando,
                   total_confirmacoes_fechou: total_confirmacoes_fechou)
-    if pev.save
+      if pev.save
         render json: pev
       else
           render json: { error: 'Invalid parameters' }, status: 401
