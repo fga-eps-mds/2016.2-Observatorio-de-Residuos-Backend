@@ -4,7 +4,7 @@ RSpec.describe UsersController, type: :controller do
 	before :all do
 		UserAccess.destroy_all
 		User.destroy_all
-		User.create! :codigo_verificacao=>"Lorem Ipsum", :usuario=>"aspdasd@hotmail.com",:nome_completo=>"test teste teste", :email=>"test@email.com", :senha=>"123456"
+		User.create! :nome_completo=>"Lorem Ipsum", :usuario=>"test@email.com", :email=>"test@email.com", :senha=>"123456", :perfil=>"Estudante", :codigo_verificacao=>"qualquercoisa", :ativo=>true
 	end
 
 	describe "GET verify_email" do
@@ -22,16 +22,8 @@ RSpec.describe UsersController, type: :controller do
 
 	describe "POST create" do
 	    it "should successfully create a user" do
-	    	post :create,{
-					:first_name=>"test",
-					:last_name=>"passed",
-					:email=>"teste@email.com",
-					:password_digest=>"123456",
-					:birth_date => nil,
-					:city=>"df",
-					:gender=>"mas",
-					:profile_type=>"Estudante"
-				}
+	    	post :create, :first_name=>"Lorem", :last_name=>"Ipsum", :nome_completo=>"test teste teste", :email=>"test2@email.com", :password_digest=>"123456", :profile=>"Estudante"
+			
 			expect(JSON.parse(response.body)["id_usuario"]).to eq(User.last.id_usuario)
 	    end
 
