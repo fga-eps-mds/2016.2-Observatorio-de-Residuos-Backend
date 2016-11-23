@@ -36,8 +36,8 @@ class MarkingsController < ApplicationController
     longitude = params[:longitude]
     estado = 'GO'
     cidade = 'Luziania'
-    total_confirmacoes_existencia = params[:likes]
-    total_confirmacoes_resolvido = params[:dislikes]
+    total_confirmacoes_existencia = params[:total_confirmacoes_existencia]
+    total_confirmacoes_resolvido = params[:total_confirmacoes_resolvido]
 
     id_usuario = User.find_by_email(params[:author_email]).id_usuario;
 
