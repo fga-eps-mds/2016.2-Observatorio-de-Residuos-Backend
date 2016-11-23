@@ -1,4 +1,5 @@
 class PevComplaintsController < ApplicationController
+  
   def index
     render json: PevComplaint.all
   end
@@ -10,10 +11,11 @@ class PevComplaintsController < ApplicationController
     id_pev = params[:id_pev]
     pevcomplaint = PevComplaint.new(title: title, description: description, author: author, id_pev: id_pev)
     if pevcomplaint.save
-        render json: pevcomplaint
+      render json: pevcomplaint
     else
-        render json: { error: 'Incorrect credentials' }, status: 401
-        puts pevcomplaint.errors.messages
+      render json: { error: 'Incorrect credentials' }, status: 401
+      puts pevcomplaint.errors.messages
     end
   end
+  
 end

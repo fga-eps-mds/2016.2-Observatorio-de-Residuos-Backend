@@ -1,4 +1,6 @@
+#Complaints
 class CreateComplaints < ActiveRecord::Migration
+  
   def change
     create_table :complaints do |t|
       t.string :title
@@ -9,4 +11,5 @@ class CreateComplaints < ActiveRecord::Migration
       t.timestamps null: false
     end
   end
+
 end

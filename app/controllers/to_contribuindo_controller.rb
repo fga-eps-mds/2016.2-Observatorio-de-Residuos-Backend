@@ -1,5 +1,6 @@
 # Tô Contribuindo controller
 class ToContribuindoController < ApplicationController
+  
   # Keep user name and email in a project that user post and search for users marked project
   def index
     toContribuindo = ToContribuindo.all
@@ -11,4 +12,5 @@ class ToContribuindoController < ApplicationController
     end
     render json: toContribuindo, methods:[:author_name, :author_email, :author_profile]
   end
+
 end

@@ -1,4 +1,6 @@
+#Controller of complaints that render a json and create a complaint
 class ComplaintsController < ApplicationController
+  
   def index
     render json: Complaint.all
   end
@@ -10,10 +12,11 @@ class ComplaintsController < ApplicationController
     id_marking = params[:id_marking]
     complaint = Complaint.new(title: title, description: description, author: author, id_marking: id_marking)
     if complaint.save
-        render json: complaint
+      render json: complaint
     else
-        render json: { error: 'Incorrect credentials' }, status: 401
-        puts complaint.errors.messages
+      render json: { error: 'Incorrect credentials' }, status: 401
+      puts complaint.errors.messages
     end
   end
+  
 end

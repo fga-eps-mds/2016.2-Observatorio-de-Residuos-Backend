@@ -1,5 +1,6 @@
 # Markings controller
 class MarkingsController < ApplicationController
+  
   # Keep user name and email in a marking that user marked and search for users marked markings
   def index
     markings = Marking.all
@@ -25,7 +26,6 @@ class MarkingsController < ApplicationController
     render json: marking;
   end
 
-
   # Create marking with success if has complete information and failed if has lack information
   def create
     titulo_incidente = params[:titulo_incidente]
@@ -42,15 +42,15 @@ class MarkingsController < ApplicationController
     id_usuario = User.find_by_email(params[:author_email]).id_usuario;
 
     marking = Marking.new(titulo_incidente: titulo_incidente, id_tipo_incidente: id_tipo_incidente, 
-                          descricao_incidente: descricao_incidente, id_tipo_incidente: id_tipo_incidente, 
-                          imagem_incidente: imagem_incidente, latitude: latitude, longitude: longitude, 
-                          estado: estado, cidade: cidade, id_usuario: id_usuario, total_confirmacoes_existencia: total_confirmacoes_existencia,
-                          total_confirmacoes_resolvido: total_confirmacoes_resolvido)
+      descricao_incidente: descricao_incidente, id_tipo_incidente: id_tipo_incidente, 
+      imagem_incidente: imagem_incidente, latitude: latitude, longitude: longitude, 
+      estado: estado, cidade: cidade, id_usuario: id_usuario, total_confirmacoes_existencia: total_confirmacoes_existencia,
+      total_confirmacoes_resolvido: total_confirmacoes_resolvido)
     if marking.save
-        render json: marking
+      render json: marking
     else
-        render json: { error: 'Incorrect credentials' }, status: 401
-        puts marking.errors.messages
+      render json: { error: 'Incorrect credentials' }, status: 401
+      puts marking.errors.messages
     end
   end
 
@@ -63,4 +63,5 @@ class MarkingsController < ApplicationController
     marking.save
     render json: marking;
   end
+  
 end

@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
+	
 	before :all do
 		UserAccess.destroy_all
 		User.destroy_all
@@ -29,14 +30,14 @@ RSpec.describe UsersController, type: :controller do
 
 	    it "should not successfull create a user with invalid email" do
 	      post :create,{
-	        :first_name=>"test",
-					:last_name=>"passed",
-					:email=>"testemailm",
-					:password_digest=>"123456",
-					:birth_date => nil,
-					:city=>"df",
-					:gender=>"mas",
-					:profile_type=>"Estudante"
+	      	  :first_name=>"test",
+			  :last_name=>"passed",
+			  :email=>"testemailm",
+			  :password_digest=>"123456",
+			  :birth_date => nil,
+			  :city=>"df",
+			  :gender=>"mas",
+			  :profile_type=>"Estudante"
 	      }
 	      expect(response.status).to be(400)
 	      expect(response.body).to eq({:error => "Invalid Email"}.to_json)
@@ -44,14 +45,14 @@ RSpec.describe UsersController, type: :controller do
 
 	    it "Should not successfull create a user with an existing email" do
 	    	post :create,{
-	        :first_name=>"test",
-					:last_name=>"passed",
-					:email=>"test@email.com",
-					:password_digest=>"123456",
-					:birth_date => nil,
-					:city=>"df",
-					:gender=>"mas",
-					:profile_type=>"Estudante"
+	        	:first_name=>"test",
+				:last_name=>"passed",
+				:email=>"test@email.com",
+				:password_digest=>"123456",
+				:birth_date => nil,
+				:city=>"df",
+				:gender=>"mas",
+				:profile_type=>"Estudante"
 	      	}
 	      	expect(response.status).to be(401)
 	      	expect(response.body).to eq({:error => "Email already used"}.to_json)
@@ -77,4 +78,5 @@ RSpec.describe UsersController, type: :controller do
 	      	expect(response.body).to eq({:error => "Incorrect credentials"}.to_json)
   		end
   	end
+
 end

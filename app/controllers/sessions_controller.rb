@@ -3,20 +3,20 @@
 class SessionsController < ApplicationController
 
   def create
-	  user = User.find_by_email(params[:email])
-	  if user && user.senha == params[:encripted_password]
+    user = User.find_by_email(params[:email])
+    if user && user.senha == params[:encripted_password]
       check_status user
-	  else
-	  	render json:{}, :status => :unauthorized
-	  end
-	end
+    else
+      render json:{}, :status => :unauthorized
+    end
+  end
 
   def check_status user
     if user.ativo
-        render json: user
-      else
-        render json:{}, :status => :forbidden
-      end
+      render json: user
+    else
+      render json:{}, :status => :forbidden
+    end
   end
 
   def getMarkings
@@ -28,5 +28,5 @@ class SessionsController < ApplicationController
     user = User.find_by_id_usuario(params[:id])
     render json: user.pevs
   end
-
+  
 end

@@ -1,5 +1,6 @@
 # PEVs controller
 class PevsController < ApplicationController
+  
   # Keep user name and email in a pev that user marked and search for users marked pevs
   def index
     pevs = Pev.all
@@ -21,8 +22,8 @@ class PevsController < ApplicationController
   def edit
     pev = Pev.find_by_id_pev(params[:pev][:id_pev])
     pev.update(titulo_pev: params[:titulo_pev], descricao_pev: params[:descricao_pev],
-      paper: params[:paper], metal: params[:metal], plastic: params[:plastic], 
-      glass: params[:glass]);
+     paper: params[:paper], metal: params[:metal], plastic: params[:plastic], 
+     glass: params[:glass]);
     render json: pev;
   end
 
@@ -58,22 +59,20 @@ class PevsController < ApplicationController
     if !user.nil?
       id_usuario = user.id_usuario      
       pev = Pev.new(titulo_pev: titulo_pev, descricao_pev: descricao_pev,
-                  id_tipo_pev: id_tipo_pev, latitude: latitude,
-                  longitude: longitude, estado: estado, cidade: cidade,
-                  id_usuario: id_usuario,paper: paper, metal: metal,
-                  plastic: plastic, glass: glass,
-                  total_confirmacoes_funcionando: total_confirmacoes_funcionando,
-                  total_confirmacoes_fechou: total_confirmacoes_fechou)
+        id_tipo_pev: id_tipo_pev, latitude: latitude,
+        longitude: longitude, estado: estado, cidade: cidade,
+        id_usuario: id_usuario,paper: paper, metal: metal,
+        plastic: plastic, glass: glass,
+        total_confirmacoes_funcionando: total_confirmacoes_funcionando,
+        total_confirmacoes_fechou: total_confirmacoes_fechou)
       if pev.save
         render json: pev
       else
-          render json: { error: 'Invalid parameters' }, status: 401
+        render json: { error: 'Invalid parameters' }, status: 401
       end   
     else
-          render json: { error: 'Invalid parameters' }, status: 401
+      render json: { error: 'Invalid parameters' }, status: 401
     end      
-
-    
-    
   end
+  
 end

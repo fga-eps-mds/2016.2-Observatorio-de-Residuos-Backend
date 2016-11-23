@@ -4,12 +4,12 @@ class UsersController < ApplicationController
 
   # Verify if an email already exist or not to allow or not other users to sign up with an email
   def verify_email
-      user = User.find_by_email(params[:email])
-      if(user == nil)
-          render json: {"newUser": true}
-      else
-          render json: user
-      end
+    user = User.find_by_email(params[:email])
+    if(user == nil)
+      render json: {"newUser": true}
+    else
+      render json: user
+    end
   end
 
   # Edit user information changed for himself/herself
@@ -30,18 +30,18 @@ class UsersController < ApplicationController
     codigo_verificacao = SecureRandom.urlsafe_base64(nil, false);
 
     user = User.new(nome_completo: nome_completo, perfil: perfil, 
-                    email: usuario,usuario: usuario, senha: senha, 
-                    codigo_verificacao: codigo_verificacao,
-                    ativo: true)
+      email: usuario,usuario: usuario, senha: senha, 
+      codigo_verificacao: codigo_verificacao,
+      ativo: true)
     if user.save
-        render json: user
+      render json: user
     else
-        user = User.find_by_email(params[:email]);
-        if(user == nil)
-          render json: { error: 'Invalid Email' }, status: 400;
-        else
-          render json: { error: 'Email already used' }, status: 401;
-        end
+      user = User.find_by_email(params[:email]);
+      if(user == nil)
+        render json: { error: 'Invalid Email' }, status: 400;
+      else
+        render json: { error: 'Email already used' }, status: 401;
+      end
     end
   end
 
@@ -55,4 +55,5 @@ class UsersController < ApplicationController
       render json: { error: 'Incorrect credentials' }, status: 401
     end
   end
+  
 end

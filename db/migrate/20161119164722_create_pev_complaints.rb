@@ -1,4 +1,6 @@
+# PEV complaints
 class CreatePevComplaints < ActiveRecord::Migration
+  
   def change
     create_table :pev_complaints do |t|
       t.string :title
@@ -9,4 +11,5 @@ class CreatePevComplaints < ActiveRecord::Migration
       t.timestamps null: false
     end
   end
+
 end
