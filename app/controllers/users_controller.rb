@@ -8,7 +8,15 @@ class UsersController < ApplicationController
     if(user == nil)
       render json: {"newUser": true}
     else
+      check_status user
+    end
+  end
+
+  def check_status user
+    if user.ativo
       render json: user
+    else
+      render json:{}, :status => :forbidden
     end
   end
 
