@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: dzzseovtp
+  api_key: '734637224697115'
+  api_secret: S49_FxZMT6ji4an6jrvwJGQsuOY
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: dzzseovtp
+  api_key: '734637224697115'
+  api_secret: S49_FxZMT6ji4an6jrvwJGQsuOY
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: dzzseovtp
+  api_key: '734637224697115'
+  api_secret: S49_FxZMT6ji4an6jrvwJGQsuOY
+  enhance_image_tag: true
+  static_image_support: false
