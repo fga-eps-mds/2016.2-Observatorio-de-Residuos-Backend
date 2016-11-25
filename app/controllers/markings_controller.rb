@@ -60,9 +60,15 @@ class MarkingsController < ApplicationController
     marking.titulo_incidente = params[:titulo_incidente]
     marking.descricao_incidente = params[:descricao_incidente]
     marking.id_tipo_incidente = params[:id_tipo_incidente]
-    marking.photo_link: params[:photo_link]
+    marking.photo_link = params[:photo_link]
     marking.save
     render json: marking;
+  end
+
+  def image_upload
+    uploader = PictureUploader.new
+    uploader.store!(params[:file])
+    render json: 'upload'
   end
   
 end

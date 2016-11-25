@@ -22,6 +22,7 @@ gem 'bcrypt'
 gem 'mysql2'
 gem 'rails_12factor'
 gem 'validates_timeliness', '~> 4.0'
+gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
