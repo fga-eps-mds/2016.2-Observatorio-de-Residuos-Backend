@@ -45,7 +45,7 @@ class MarkingsController < ApplicationController
       descricao_incidente: descricao_incidente, id_tipo_incidente: id_tipo_incidente, 
       imagem_incidente: imagem_incidente, latitude: latitude, longitude: longitude, 
       estado: estado, cidade: cidade, id_usuario: id_usuario, total_confirmacoes_existencia: total_confirmacoes_existencia,
-      total_confirmacoes_resolvido: total_confirmacoes_resolvido)
+      total_confirmacoes_resolvido: total_confirmacoes_resolvido, photo_link: params[:photo_link])
     if marking.save
       render json: marking
     else
@@ -60,6 +60,7 @@ class MarkingsController < ApplicationController
     marking.titulo_incidente = params[:titulo_incidente]
     marking.descricao_incidente = params[:descricao_incidente]
     marking.id_tipo_incidente = params[:id_tipo_incidente]
+    marking.photo_link: params[:photo_link]
     marking.save
     render json: marking;
   end

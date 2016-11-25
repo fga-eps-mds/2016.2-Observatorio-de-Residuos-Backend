@@ -23,7 +23,7 @@ class PevsController < ApplicationController
     pev = Pev.find_by_id_pev(params[:pev][:id_pev])
     pev.update(titulo_pev: params[:titulo_pev], descricao_pev: params[:descricao_pev],
      paper: params[:paper], metal: params[:metal], plastic: params[:plastic], 
-     glass: params[:glass]);
+     glass: params[:glass], photo_link: params[:photo_link]);
     render json: pev;
   end
 
@@ -64,7 +64,8 @@ class PevsController < ApplicationController
         id_usuario: id_usuario,paper: paper, metal: metal,
         plastic: plastic, glass: glass,
         total_confirmacoes_funcionando: total_confirmacoes_funcionando,
-        total_confirmacoes_fechou: total_confirmacoes_fechou)
+        total_confirmacoes_fechou: total_confirmacoes_fechou,
+        photo_link: params[:photo_link])
       if pev.save
         render json: pev
       else

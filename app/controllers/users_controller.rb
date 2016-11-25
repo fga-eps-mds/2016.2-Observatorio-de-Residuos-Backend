@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   # Edit user information changed for himself/herself
   def edit
     user = User.find_by_email(params[:email]);
-    user.update(nome_completo: params[:name], perfil: params[:profile]);
+    user.update(nome_completo: params[:name], perfil: params[:profile], photo_link: params[:photo_link]);
     render json: user;
   end
 
