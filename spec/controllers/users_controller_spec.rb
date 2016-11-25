@@ -18,6 +18,16 @@ RSpec.describe UsersController, type: :controller do
 
 		    expect(response.body).to eq({:newUser => true}.to_json)
 		end
+
+		it "Should return an empty json and forbidden status if inactive user" do
+  			user = User.last
+  			user.ativo = false
+  			user.save
+
+  			get :verify_email, :email=>user.email
+
+  			expect(response.body).to eq("{}")
+  		end
 	end
 
 	describe "POST create" do
