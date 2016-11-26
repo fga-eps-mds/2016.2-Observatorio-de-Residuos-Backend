@@ -38,6 +38,9 @@ class MarkingsController < ApplicationController
     cidade = 'Luziania'
     total_confirmacoes_existencia = params[:total_confirmacoes_existencia]
     total_confirmacoes_resolvido = params[:total_confirmacoes_resolvido]
+    if(params[:file])
+      foto = params[:file]
+    end
 
     id_usuario = User.find_by_email(params[:author_email]).id_usuario;
 
@@ -45,7 +48,7 @@ class MarkingsController < ApplicationController
       descricao_incidente: descricao_incidente, id_tipo_incidente: id_tipo_incidente, 
       imagem_incidente: imagem_incidente, latitude: latitude, longitude: longitude, 
       estado: estado, cidade: cidade, id_usuario: id_usuario, total_confirmacoes_existencia: total_confirmacoes_existencia,
-      total_confirmacoes_resolvido: total_confirmacoes_resolvido, photo_link: params[:photo_link])
+      total_confirmacoes_resolvido: total_confirmacoes_resolvido, foto: foto)
     if marking.save
       render json: marking
     else
@@ -65,10 +68,4 @@ class MarkingsController < ApplicationController
     render json: marking;
   end
 
-  def image_upload
-    uploader = PictureUploader.new
-    uploader.store!(params[:file])
-    render json: 'upload'
-  end
-  
 end

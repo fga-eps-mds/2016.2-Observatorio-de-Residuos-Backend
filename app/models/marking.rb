@@ -3,6 +3,7 @@ class Marking < ActiveRecord::Base
   attr_accessor :author_name, :author_email, :likes, :dislikes
   self.table_name = "incidentes"
   has_and_belongs_to_many :users
+  mount_uploader :foto, PictureUploader
   validates :descricao_incidente, length: {maximum:140}
   validates :titulo_incidente, presence:true
 end

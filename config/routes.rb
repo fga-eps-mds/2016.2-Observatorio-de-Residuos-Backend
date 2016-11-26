@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   post 'markings/edit'      => 'markings#edit'
   post 'pevs/increment'     => 'pevs#increment'
   post 'markings/increment' => 'markings#increment'
-  post 'file/upload'        => 'markings#image_upload'
   post 'complaints/create'  => 'complaints#create'
   post 'pev_complaints/create' => 'pev_complaints#create'
 
