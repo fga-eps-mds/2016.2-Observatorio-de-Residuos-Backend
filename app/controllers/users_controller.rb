@@ -20,6 +20,7 @@ class UsersController < ApplicationController
     end
   end
 
+
   # Edit user information changed for himself/herself
   def edit
     user = User.find_by_email(params[:email]);
