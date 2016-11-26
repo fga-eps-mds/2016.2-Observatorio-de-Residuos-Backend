@@ -53,6 +53,9 @@ class PevsController < ApplicationController
     glass = params[:glass]
     total_confirmacoes_funcionando = params[:total_confirmacoes_funcionando]
     total_confirmacoes_fechou = params[:total_confirmacoes_fechou]
+    if(params[:file])
+      foto = params[:file]
+    end
     
     user = User.find_by_email(params[:author_email])
 
@@ -65,7 +68,7 @@ class PevsController < ApplicationController
         plastic: plastic, glass: glass,
         total_confirmacoes_funcionando: total_confirmacoes_funcionando,
         total_confirmacoes_fechou: total_confirmacoes_fechou,
-        photo_link: params[:photo_link])
+        foto: foto)
       if pev.save
         render json: pev
       else
