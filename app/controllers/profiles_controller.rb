@@ -4,5 +4,10 @@ class ProfilesController < ApplicationController
   def index
     render json: Profile.all
   end
+
+  def show
+    profile = Profile.find_by_perfil(params[:perfil])
+    render json: profile
+  end
   
 end
