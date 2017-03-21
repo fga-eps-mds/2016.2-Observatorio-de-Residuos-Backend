@@ -11,12 +11,9 @@ default: &default
 
 development:
   <<: *default
-  database: sql3145423
+  database: observatorio-devel
   pool: 5
-  username: sql3145423
-  password: D23yL1w7sW
-  host: sql3.freemysqlhosting.net
-  port: 3306
+  password: root
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
