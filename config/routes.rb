@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
 
   get  'profiles'          => 'profiles#index'
-  get 'profiles/:perfil' => 'profiles#show'
+  get 'profiles/:id_perfil' => 'profiles#show'
   get  'markings'          => 'markings#index'
   get  'pevs'              => 'pevs#index'
   get  'pev_types'         => 'pev_types#index'

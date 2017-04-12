@@ -6,7 +6,7 @@ class ProfilesController < ApplicationController
   end
 
   def show
-    profile = Profile.find_by_perfil(params[:perfil])
+    profile = Profile.find params[:id_perfil]
     render json: profile
   end
   
