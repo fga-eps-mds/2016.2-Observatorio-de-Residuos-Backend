@@ -6,14 +6,14 @@
 #
 default: &default
   adapter: mysql2
-  username: root
-  host: localhost
+  username: sql10169324
+  host: sql10.freemysqlhosting.net
 
 development:
   <<: *default
-  database: observatorio-devel
+  database: sql10169324
   pool: 5
-  password: root
+  password: 
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
