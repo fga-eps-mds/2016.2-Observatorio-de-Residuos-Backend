@@ -31,4 +31,6 @@ Rails.application.routes.draw do
   get  'complaints'        => 'complaints#index'
   get  'pev_complaints'    => 'pev_complaints#index'
 
+  root 'home#index'
+
 end

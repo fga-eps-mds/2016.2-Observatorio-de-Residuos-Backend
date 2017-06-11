@@ -124,6 +124,7 @@ GEM
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
     public_suffix (2.0.4)
+    puma (3.9.1)
     rack (1.6.5)
     rack-cors (0.4.0)
     rack-test (0.6.3)
@@ -235,6 +236,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   mysql2
+  puma
   rack-cors
   rails (= 4.2.6)
   rails_12factor
@@ -252,4 +254,4 @@ RUBY VERSION
    ruby 2.3.1p112
 
 BUNDLED WITH
-   1.13.1
+   1.15.1

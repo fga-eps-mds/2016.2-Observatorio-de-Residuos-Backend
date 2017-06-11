@@ -6,22 +6,22 @@
 #
 default: &default
   adapter: mysql2
-  username: sql10169324
-  host: sql10.freemysqlhosting.net
+  username: 0bs3rv4t0r10
+  password: 
 
 development:
   <<: *default
-  database: sql10169324
-  pool: 5
+  database: observatorio_development
   password: 
+  pool: 5
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: observatorio-producaoTest
+  database: observatorio_test
 
 production:
   <<: *default
-  database: observatorio-producao
+  database: observatorio_producao

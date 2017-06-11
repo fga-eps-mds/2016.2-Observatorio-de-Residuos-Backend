@@ -48,3 +48,7 @@ plugins/
 
 ########## Webstorm
 /.idea
+
+/public
+.ruby-version
+.ruby-gemset
