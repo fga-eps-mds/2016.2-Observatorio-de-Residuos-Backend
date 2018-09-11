@@ -1,7 +1,7 @@
 language: ruby
 
 rvm:
-  - "2.3.0"
+  - "2.3.1"
 
 services:
   - mysql
@@ -23,9 +23,6 @@ after_success:
 notifications:
   email:
     recipients:
-      - antoniojk7@gmail.com
-      - leomeister22@gmail.com
-      - lucas.advc@gmail.com
-      - skingk.f@gmail.com
-      - vitor.nere@hotmail.com
+      - lhqmalta@gmail.com
+      - andrade.icaa@gmail.com
 
