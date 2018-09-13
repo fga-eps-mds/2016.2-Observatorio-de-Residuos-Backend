@@ -1,0 +1,18 @@
+version: '2.0'
+
+services:
+  mysql:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=123
+    volumes:
+      - .:/code
+      - datavolume:/var/lib/mysql
+  rails:
+    build: .
+    volumes:
+      - .:/code
+    ports:
+      - 3000:3000
+volumes:
+  datavolume:
