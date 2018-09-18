@@ -4,12 +4,18 @@ WORKDIR /code
 
 ADD . /code
 
-RUN bundle install
+# RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
 
-EXPOSE 3000
+RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs
 
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
+ENV MYSQL_ROOT_PASSWORD 123
 
-RUN apt-get install -y nodejs
+RUN echo mysql-server mysql-server/root_password password $MYSQL_ROOT_PASSWORD | debconf-set-selections;\
+  echo mysql-server mysql-server/root_password_again password $MYSQL_ROOT_PASSWORD | debconf-set-selections;\
+  apt-get install -y mysql-server mysql-client libmysqlclient-dev
 
-CMD ["rails","server", "-b", "0.0.0.0"]
+COPY entrypoint.sh /code
+RUN ["chmod", "+x", "/code/entrypoint.sh"]
+ENTRYPOINT ["sh", "/code/entrypoint.sh" ]
+
+# CMD ["rails","server", "-b", "0.0.0.0"]
