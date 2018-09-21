@@ -6,13 +6,14 @@
 #
 default: &default
   adapter: mysql2
-  username: 0bs3rv4t0r10
-  password: 
+  host: mysql
+  username: root
+  password: 123
 
 development:
   <<: *default
   database: observatorio_development
-  password: 
+  password: 123
   pool: 5
 
 # Warning: The database defined as "test" will be erased and
